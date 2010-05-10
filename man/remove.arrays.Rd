@@ -1,12 +1,15 @@
 \name{remove.arrays}
+
 \alias{remove.arrays}
 
 \title{
 Remove arrays from a RPPA data list
 }
+
 \description{
 	Removes arrays from the RPPA data set which are not used in following calculations.
 }
+
 \usage{
 remove.arrays(x, param = "target", arrays2rm = c("protein", "blank", "housekeeping"))
 }
@@ -24,20 +27,18 @@ remove.arrays(x, param = "target", arrays2rm = c("protein", "blank", "housekeepi
 }
 
 \value{
-	\item{expression }{matrix with protein expression data}
-	\item{expression_b }{matrix with protein expression or background data depending on the data input}
-	\item{arraydescription }{data frame with feature data}
-	\item{sampledescription }{data frame with pheno data}}
+    The RPPA data list without the arrays specified by \code{arrays2rm}.
+}
 
 \author{
 	Heiko Mannsperger <h.mannsperger@dkfz.de>
 }
 
 \examples{
-	
-library(RPPanalyzer)
-data(dataIII)
-DT <- remove.arrays(dataIII, param = "target", arrays2rm = c("protein"))
- 
+        library(RPPanalyzer)
+        data(dataIII)
+            
+        DT <- remove.arrays(dataIII, param = "target", arrays2rm = c("protein"))
 }
+
 \keyword{ manip }

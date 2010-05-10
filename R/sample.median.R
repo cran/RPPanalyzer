@@ -1,64 +1,32 @@
 `sample.median` <-
+function(x){
 
-function(x,writetable=F){
+    element1 <- c(NULL)
+    element2 <- c(NULL)
+    element3 <- c(NULL)
 
-      element1 <- c(NULL)
-      element2 <- c(NULL)
-      element3 <- c(NULL)
-      
-      if (length(x)==3){
-      
-         replis <- unique(x[[3]][,"ID"])
-         
-         
-            for (i in seq(along=replis)) {
-               sample.lines <- which(x[[3]][,"ID"]==replis[i])
-               sample.mtx <- x[[1]][sample.lines,]
-               medians <- apply(sample.mtx,2,median)
-               element1 <- rbind(element1,medians)
-               mads <- apply(sample.mtx,2,mad)
-               element2 <- rbind(element2,mads)
-               element3 <- rbind(element3,x[[3]][sample.lines[1],])
-            }
-            
-         rownames (element1) <- replis
-         rownames (element2) <- replis
-         rownames (element3) <- c(1:nrow(element1))
-         
-         
-         data.list <- list(expression=element1,
-                           error.mads=element2,
-                           arraydescription=x[[2]],
-                           sampledescription=element3)
-                           
-       } else {
-                           
 
-         replis <- unique(x[[4]][,"ID"])
-         
-            for (i in seq(along=replis)) {
-               sample.lines <- which(x[[4]][,"ID"]==replis[i])
-               sample.mtx <- x[[1]][sample.lines,]
-               medians <- apply(sample.mtx,2,median)
-               element1 <- rbind(element1,medians)
-               mads <- apply(sample.mtx,2,mad)
-               element2 <- rbind(element2,mads)
-               element3 <- rbind(element3,x[[4]][sample.lines[1],])
-            }
-         rownames (element1) <- c(1:nrow(element1))
-         rownames (element2) <- c(1:nrow(element1))
-         rownames (element3) <- c(1:nrow(element1))
-         
-         data.list <- list(expression=element1,
-                           error_mad=element2,
-                           arraydescription=x[[3]],
-                           sampledescription=element3)
-        }
-                           
-              if(writetable){
-            write.Data(data.list)
-            }             
-                           
-         return (data.list)
+    replis <- unique(x[[4]][,"ID"])
+
+    for (i in seq(along=replis)) {
+        sample.lines <- which(x[[4]][,"ID"]==replis[i])
+        sample.mtx <- x[[1]][sample.lines,]
+        medians <- apply(sample.mtx,2,median)
+        element1 <- rbind(element1,medians)
+        mads <- apply(sample.mtx,2,mad)
+        element2 <- rbind(element2,mads)
+        element3 <- rbind(element3,x[[4]][sample.lines[1],])
+    }
+    rownames (element1) <- c(1:nrow(element1))
+    rownames (element2) <- c(1:nrow(element1))
+    rownames (element3) <- c(1:nrow(element1))
+
+    data.list <- list(expression=element1,
+            error=element2,
+            arraydescription=x[[3]],
+            sampledescription=element3)
+
+
+    return (data.list)
 }
 

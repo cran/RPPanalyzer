@@ -8,7 +8,7 @@
 }
 \usage{
 normalizeRPPA(x, method = "row", normalizer = "housekeeping", useCol = "BCA",
-writetable = F)
+writetable = F,vals="logged")
 }
 \arguments{
   \item{x}{ List containing RPPA data set }
@@ -20,6 +20,9 @@ writetable = F)
   that should be used for normalization using the method \code{extValue}. }
   \item{writetable}{ logical. If true data are exported as tab delimited text
   files to current working directory }
+  \item{vals}{ the data is returned at log2 scale with substracted normalizer
+  value per default. If argument is set to \code{native} the median of the normalizer
+  values is added after normalization and the data is returned at native scale.}
 }
 \details{
   The function provides four different methods to normalize RPPA data to ensure

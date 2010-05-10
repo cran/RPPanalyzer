@@ -1,47 +1,47 @@
 `calcLogistic` <-
 function(x,sample.id=c("sample","sample.n"),dilution="dilution"
-                        ,xVal=NULL, plot=F, detectionLimit=F) {
-                        
-        ## generate column to identify individual samples
-      xi <- create.ID.col(x,sample.id=sample.id)
+        ,xVal=NULL, plot=F, detectionLimit=F) {
 
-      ## identify samples in a vector
-      id <- (unique(xi[[4]][,"identifier"]))
+    ## generate column to identify individual samples
+    xi <- create.ID.col(x,sample.id=sample.id)
 
-        ## generate empty matrix to store concentration vals
-        vals <- matrix(NA, nrow=length(id), ncol=ncol(xi[[1]])
-               ,dimnames=list(id,colnames(xi[[1]])))
+    ## identify samples in a vector
+    id <- (unique(xi[[4]][,"identifier"]))
 
-      ## for loop over the samples
-        for (i in seq(along=id)){
+    ## generate empty matrix to store concentration vals
+    vals <- matrix(NA, nrow=length(id), ncol=ncol(xi[[1]])
+            ,dimnames=list(id,colnames(xi[[1]])))
 
-            x.lines <- which(as.character(xi[[4]][,"identifier"])==id[i])
+    ## for loop over the samples
+    for (i in seq(along=id)){
 
-          ## for loop over the analyzed targets
-             for (j in 1:ncol(xi[[1]])){
+        x.lines <- which(as.character(xi[[4]][,"identifier"])==id[i])
 
-                    xvals <- xi[[4]][x.lines,dilution]
-                    yvals <- xi[[1]][x.lines,j]
-                    
-                    params <- curveFitSigmoid(xvals,yvals)
+        ## for loop over the analyzed targets
+        for (j in 1:ncol(xi[[1]])){
 
-                    vals[i,j] <- params$val
-                    }
-         }
-         
-         tempdat <- pick.high.conc(xi,highest=dilution)
+            xvals <- xi[[4]][x.lines,dilution]
+            yvals <- xi[[1]][x.lines,j]
 
-       tempid <-unique(as.character(tempdat[[4]][,"identifier"]))
+            params <- curveFitSigmoid(xvals,yvals)
 
-       order.lines <- match(tempid,rownames(vals))
-       vals <- vals[order.lines,]
+            vals[i,j] <- params$val
+        }
+    }
 
-       sampledescription <- tempdat[[4]][match(tempid,tempdat[[4]][,"identifier"]),]
+    tempdat <- pick.high.conc(xi,highest=dilution)
 
-       data.list <- list(expression=vals
-                           , expression_b=vals
-                           , arraydescription=xi[[3]]
-                           , sampledescription=sampledescription)
-       return(data.list)
+    tempid <-unique(as.character(tempdat[[4]][,"identifier"]))
+
+    order.lines <- match(tempid,rownames(vals))
+    vals <- vals[order.lines,]
+
+    sampledescription <- tempdat[[4]][match(tempid,tempdat[[4]][,"identifier"]),]
+
+    data.list <- list(expression=vals
+            , dummy=vals
+            , arraydescription=xi[[3]]
+            , sampledescription=sampledescription)
+    return(data.list)
 }
 

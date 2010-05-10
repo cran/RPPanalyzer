@@ -6,20 +6,18 @@ Aggregate the replicates in an RPPA data set
 }
 \description{
 	
-   Aggregates the replicates in an RPPA data list with 3 or 4 elements using
+   Aggregates the replicates in an RPPA data list using
    the median function.
 
 }
 \usage{
-   sample.median(x, writetable = F)
+   sample.median(x)
 }
 \arguments{
   \item{x}{
       List with RPPA data set
 }
-  \item{writetable}{
-		List containing RPPA data set
-}
+
 }
 
 \value{

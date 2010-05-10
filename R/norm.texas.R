@@ -1,7 +1,7 @@
 `norm.texas` <-
-function (x,writetable=F) {
+function (x,writetable=F,vals="logged") {
 	
-   dat <- log(x[[1]])
+   dat <- log2(x[[1]])
    
    spot.run <- levels(as.factor(x[[3]]["spotting_run",]))
    norm.dat <- c(NULL)
@@ -17,6 +17,16 @@ for (i in spot.run){
                 texas <- apply(temp.dat,2,function(x){
                                   x-cf
                                  })
+                                 
+                 ## change data scaling back to native values
+                if(vals=="native"){
+                   normalizer.median <- median(cf)
+                   ## add median value of normalizer values
+                   texas <- texas + normalizer.median
+                   ## transform to native data
+                   texas <- 2^(texas)
+                }
+                                 
                norm.dat <- cbind(norm.dat,texas)
                                   
 }

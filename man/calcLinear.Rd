@@ -35,7 +35,7 @@ If false, all data points are used to fit the model
 \value{
 
 \item{expression }{matrix with protein expression data}
-\item{expression_b }{matrix with protein expression data}
+\item{dummy }{matrix with protein expression data}
 \item{arraydescription }{data frame with feature data}
 \item{sampledescription }{data frame with pheno data}
 }
@@ -47,12 +47,10 @@ for calculation of serial diluted samples only
 }
 
 \examples{
+    library(RPPanalyzer)
+    data(ser.dil.samples)
 
-library(RPPanalyzer)
-data(subsetdataI)
-
-datalinear <- calcLinear(subsetdataI,sample.id=c("sample","sample.n")
-                           ,dilution="dilution")
+    predicted.data <- calcLinear(ser.dil.samples,sample.id=c("sample","sample.n") ,dilution="dilution")
 }
 \keyword{ manip }
 

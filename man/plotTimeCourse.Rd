@@ -7,12 +7,15 @@
  }
 \usage{
 plotTimeCourse(x, tc.identifier = c("sample", "stimulation", "inhibition", "stim_concentration"),
-plot.split = "experiment", file = "splineplot.pdf", arrays2rm = c("protein", "Blank"), plotformat = "rawdata")
+tc.reference=NULL, plot.split = "experiment", file = "splineplot.pdf",
+arrays2rm = c("protein", "Blank"), plotformat = "rawdata",log=T)
 }
 \arguments{
   \item{x}{ List containing RPPA data set }
   \item{tc.identifier}{ character string describing the column names in the
   sampledescription that identifies the individual time course experiments}
+  \item{tc.reference}{ character string describing the sample that will be used
+  as reference for the time course plots.}
   \item{plot.split}{ character string describing the column names in
   sampledescription that defines the argument that devides between different plots }
   \item{file}{ character string for the name of the exported file }
@@ -20,7 +23,8 @@ plot.split = "experiment", file = "splineplot.pdf", arrays2rm = c("protein", "Bl
   from the time course plots }
   \item{plotformat}{ character string defining the plot type: \code{rawdata},
   \code{splines},\code{both}. }
-
+  \item{log}{logical, if true time courses signal intensities will be plotted
+  at log2 scale}
 }
 \details{
   This function plots RPPA time course experiments from data sets with aggregated
