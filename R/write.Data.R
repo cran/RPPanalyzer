@@ -1,5 +1,5 @@
 `write.Data` <-
-function(x){
+function(x,FileNameExtension="Data"){
       if (length(x)==3){
             fillmat <- matrix("",nrow=nrow(x[[2]]),ncol=ncol(x[[3]]))
             
@@ -35,9 +35,9 @@ function(x){
                   colnames(alldat) <- colnames(lowerpart)
                   colnames(alldatII) <- colnames(lowerpart)
               
-                  write.table(alldat,file=paste(labels(x)[1],".txt",sep="")
+                  write.table(alldat,file=paste(FileNameExtension,labels(x)[1],".txt",sep="")
                               ,sep="\t",row.names=F,col.names=F)
-                  write.table(alldatII,file=paste(labels(x)[2],".txt",sep="")
+                  write.table(alldatII,file=paste(FileNameExtension,labels(x)[2],".txt",sep="")
                               ,sep="\t",row.names=F,col.names=F)
             }      
 }

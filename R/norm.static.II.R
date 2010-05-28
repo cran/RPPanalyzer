@@ -1,7 +1,7 @@
 `norm.static.II` <-
-function (x,normalizer=c("housekeeping"),writetable=F) {
+function (x,normalizer=c("housekeeping"),writetable=F,vals="logged") {
          
-         dat <- log(x[[1]])
+         dat <- log2(x[[1]])
          
          prot.cols <- which(x[[3]]["target",]==normalizer)
          
@@ -12,6 +12,16 @@ function (x,normalizer=c("housekeeping"),writetable=F) {
                 temp <- apply(dat,2,function(x){
                               x-norm
                               })
+                              
+                ## optional: change data scaling back to native values
+                if(vals=="native"){
+                   normalizer.median <- median(norm)
+                   ## add median value of normalizer values
+                   temp <- temp+normalizer.median
+                   ## transform to native data
+                   temp <- 2^(temp)
+                }
+                
                       data <- list(expression=temp,
                                     dummy=temp,
                                    arraydescription=x[[3]],

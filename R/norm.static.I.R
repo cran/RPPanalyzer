@@ -1,12 +1,15 @@
 `norm.static.I` <-
-function (x,writetable=F) {
+function (x,writetable=F,vals="logged") {
          
-   dat <- log(x[[1]])
+   dat <- log2(x[[1]])
          
          
    pads <-levels(as.factor(x[[3]]["pad",]))
+   
    spot.run <- levels(as.factor(x[[3]]["spotting_run",]))
+   
    norm.dat <- c(NULL)
+   
    arrayx <- c(NULL)
        for (j in spot.run){
          for (i in pads){
@@ -18,10 +21,23 @@ function (x,writetable=F) {
          prot.col <- which (x[[3]]["target",]=="protein" 
                               & x[[3]]["pad",]==i
                               & x[[3]]["spotting_run",]==j)
+                              
                normalizer <- dat[,prot.col]
+
+               
                 temp.i <- apply(temp,2,function(x){
                               x-normalizer
                               })
+                              
+                ## change data scaling back to native values
+                if(vals=="native"){
+                   normalizer.median <- median(dat[,prot.col])
+                   ## add median value of normalizer values
+                   temp.i <- temp.i+normalizer.median
+                   ## transform to native data
+                   temp.i <- 2^(temp.i)
+                }
+                   
                       norm.dat <- cbind(norm.dat,temp.i)
                       }
             }

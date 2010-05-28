@@ -9,7 +9,8 @@
    in current working directory.
 }
 \usage{
-   read.Data(blocksperarray = 4, spotter = "arrayjet", writetable = FALSE)
+   read.Data(blocksperarray = 4, spotter = "arrayjet", writetable = FALSE,
+   printFlags=FALSE,fileName="Flagged_spots.csv",...)
 }
 \arguments{
   \item{blocksperarray}{
@@ -21,6 +22,9 @@
   \item{writetable}{ logical. If true data are exported as tab delimited text
       files to current working directory
   }
+  \item{printFlags}{logical. If true flagged spots will exported as csv file}
+  \item{fileName}{character string naming the csv file for the flagged spots}
+  \item{...}{any other arguments passed to read.gpr}
 }
 \details{
    This function reads and annotates RPPA rawdata provided in three different

@@ -5,6 +5,7 @@ function(x) {
         ident <- sub("-", "", id)
         rownames (x[[1]]) <- ident
         rownames (x[[2]]) <- ident
+        rownames (x[[3]]) <- ident
         return (x)
 }
 

@@ -1,7 +1,3 @@
 import(limma,gam,Hmisc,gplots)
-export(correctBG, rppaList2Heatmap, 
-plotMeasurementsQC, plotQC, select.sample.group, pick.high.conc,select.measurements,
-calcSdc, plotqq,
-rppaList2ExpressionSet, write.Data, calcLinear, 
-rppa2boxplot, sample.median, calcLogistic, normalizeRPPA,
-read.Data,test.correlation, plotTimeCourse, remove.arrays)
+
+export(calcLinear,calcLogistic,calcSdc,calcSuperCurve,correctBG,normalizeRPPA,pick.high.conc,plotMeasurementsQC,plotQC,plotTimeCourse,plotqq,read.Data,test.correlation,remove.arrays,rppa2boxplot,rppaList2ExpressionSet,rppaList2Heatmap,sample.median,select.measurements,select.sample.group,write.Data)

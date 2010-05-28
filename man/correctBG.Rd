@@ -16,16 +16,16 @@ correctBG(x, method = "normexp")
 		List with RPPA data set
 }
   \item{method}{
-		any method from the function backgroundCorrect() and \code{addmin} which adds
+		any method from the function \code{\link[limma]{backgroundCorrect}} and \code{addmin} which adds
 		a fix number to each value to avoid negative values
 }
 }
 \details{
-	This function is a wrapper for the \code{backgroundCorrect}
-   function of the \code{limma} package. As additional method "addmin" is implemented. 
+	This function is a wrapper for the \code{\link[limma]{backgroundCorrect}}
+   function of the limma package. As additional method "addmin" is implemented. 
 }
 \value{
-	\item{expression }{matrix with expression data}
+	\item{expression }{matrix with background corrected expression data}
 	\item{background }{matrix with background data}
 	\item{arraydescription}{data frame with feature data}
 	\item{sampledescription }{data frame with pheno data}
@@ -41,7 +41,7 @@ Heiko Mannsperger <h.mannsperger@dkfz.de>, Stephan Gade <s.gade@dkfz.de>
 }
 
 \seealso{
- For detailed information about the background correction methods see: \code{\link{backgroundCorrect}},
+ For detailed information about the background correction methods see: \code{\link[limma]{backgroundCorrect}},
 }
 \examples{
 	
