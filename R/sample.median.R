@@ -11,6 +11,16 @@ function(x){
     for (i in seq(along=replis)) {
         sample.lines <- which(x[[4]][,"ID"]==replis[i])
         sample.mtx <- x[[1]][sample.lines,]
+        
+    #### improvement 2010-10-13
+            if (length(sample.lines) < 2) {
+
+               print(paste("Warning: sample with identifier",replis[i],"has no replicate spots"))
+               sample.mtx <- t(as.matrix(x[[1]][sample.lines,]))
+
+             }
+####
+
         medians <- apply(sample.mtx,2,median)
         element1 <- rbind(element1,medians)
         mads <- apply(sample.mtx,2,mad)

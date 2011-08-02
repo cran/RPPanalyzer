@@ -5,7 +5,7 @@ function (x,param="tissue",control="N",file="wilcox_groups.pdf"){
 	data <- select.measurements(x)
 
 	## identify groupnames of selected parameter
-	 groups <-unique(data[[4]][,param])
+  groups <- unique(setdiff(data[[4]][, param],NA))
 
     groups.i <- as.character(groups[-which(groups==control)])
     

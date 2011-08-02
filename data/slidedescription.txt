@@ -1,7 +1,0 @@
-gpr	pad	slide	spotting_run	incubation_run	target	AB_ID	spotted_volume
-S1.gpr	1	1	1	1	housekeeping	AB_no1	3
-S1.gpr	2	1	1	1	target_1	AB_no2	1
-S2.gpr	1	2	1	1	target_2	AB_no3	3
-S2.gpr	2	2	1	1	target_3	AB_no4	1
-S4.gpr	1	4	1	1	protein	proteinDye	3
-S4.gpr	2	4	1	1	protein	proteinDye	1
