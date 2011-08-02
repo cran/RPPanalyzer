@@ -1,11 +1,11 @@
 `rppaList2Heatmap` <-
 function (x,sampledescription="sample",side.color="tissue"
-			, remove=c("blank","protein","Abmix"),distance = "euclidean"
-         , dendros="both", cutoff=0.005, fileName="Heatmap.pdf"
-         , cols=colorpanel(100, low="blue",mid="yellow",high="red")){
+			, remove=c("blank","protein","Abmix"),distance = "eucsq"
+         , dendros="both", cutoff=0.005, fileName=NULL
+         , cols=colorpanel(100, low="blue",mid="yellow",high="red"), 
+         hclust.method="ward", scale="row"){
 
-         stopifnot(require(gplots))
-         
+       
    data <- select.measurements(x)
 
 	mat <- data[[1]]
@@ -21,24 +21,29 @@ function (x,sampledescription="sample",side.color="tissue"
 
    rsc <- match(data[[4]][,side.color],groups)
 
-	colors <- rainbow(length(groups))
+	#colors <- rainbow(length(groups))
+    colors <- colorRampPalette(c("red", "orange", "blue"),space = "Lab")(length(groups))
 
 	for (i in seq(along=groups)){
-
-	rsc[rsc==i]=colors[i]
-
-		}
-		
+		rsc[rsc==i]=colors[i]
+	}
+	
+	if(!is.null(fileName)) {	
 		pdf(file=fileName)
+	}
 		
-      plot.heatmap(t(mat), distance = distance, dendros=dendros, cutoff=cutoff
-                  , toFile=F, fileName=fileName
+      plotHeatmap(t(mat), distance = distance, dendros=dendros, cutoff=cutoff
+                  , toFile=FALSE, fileName=fileName
                   , cols=cols
-                  , ColSideColors=rsc)
+                  , ColSideColors=rsc
+                  , hclust.method=hclust.method
+                  , scale=scale)
 
      legend(x=0,y=0.8,legend=groups,col=colors,pch=15)
      
-     dev.off()
+     if(!is.null(fileName)) {
+		dev.off()
+	}
                   
    }
 

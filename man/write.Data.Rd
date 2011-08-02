@@ -22,9 +22,11 @@ write.Data(x,FileNameExtension="Data")
 Heiko Mannsperger <h.mannsperger@dkfz.de>
 }
 \examples{
+\dontrun{
 	library(RPPanalyzer)
 	data(dataII)
 	
 	write.Data(dataII)
+    }
 }
 \keyword{ IO }

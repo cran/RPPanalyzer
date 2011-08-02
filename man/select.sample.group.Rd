@@ -27,9 +27,11 @@ An RPPA data list containing only these samples that match the criteria given in
 }
 
 \examples{
+\dontrun{
 	library(RPPanalyzer)
 	data(dataII)
 
 	selectedData <- select.sample.group(dataII,params=list("stimulation"=c("A","B")))
+}
 }
 \keyword{ manip }

@@ -23,7 +23,9 @@ the samples.
 }
 
 \examples{
+\dontrun{
 data(ser.dil.samples)
 str(ser.dil.samples)
+}
 }
 \keyword{datasets}

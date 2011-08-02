@@ -1,11 +1,6 @@
 `curveFitLinear` <-
 function(x, y, xVal=NULL, method="quantreg", plot=F, detectionLimit=F)  {
 
-   if (method=="quantreg") {
-   stopifnot(require(quantreg))
-                            }
-   stopifnot(require(stats4))
-
     uniqueX <- sort(unique(x))
 
     if (detectionLimit)  {

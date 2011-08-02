@@ -29,8 +29,8 @@
 }
 \source{
 
- The data set contains the incubation data from reverse phase protein arrays
- with randomized feature data.
+ The data set contains the incubation data from reverse phase protein arrays for 
+ the HGF data set. These are 3 sample slides plus one slide for FCF normalization.
 }
 
 \keyword{datasets}

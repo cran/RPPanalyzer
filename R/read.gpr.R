@@ -34,7 +34,8 @@ function(blocksperarray=4,spotter="arrayjet",...){
     lines2skip <- as.numeric(strsplit(tbl, split=seperator)[[1]][1])+2
     ## generate character vector as identifier for the single spots
     master.t <- read.delim(slides[1], header=T,skip=lines2skip, check.names=F,...)
-
+    master.t$ID<-gsub("\n","",master.t$ID)
+    
     ## get the column defining the foreground and background signal columnns in the gpr file
     if(sigSpec) {
         fColumn <- unique(slide.dat[slide.dat$gpr==slides[1],"foreground"])[1]

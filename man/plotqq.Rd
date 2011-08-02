@@ -22,10 +22,11 @@
 }
 \author{ Heiko Mannsperger <h.mannsperger@dkfz.de> }
 \examples{
-
+\dontrun{
 	library(RPPanalyzer)
 	data(dataIII)
 	plotqq(dataIII,file="dataIII_qqplot.pdf")
+    }
 }
 \keyword{hplot }
 

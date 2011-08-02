@@ -31,7 +31,9 @@ columns "ID", "sample_type", "sample", "concentration", and "dilution"
 }
 
 \examples{
+\dontrun{
 data(dataI)
 str(dataI)
+}
 }
 \keyword{datasets}

@@ -29,7 +29,9 @@ background matrix and annotates the samples.
 }
 
 \examples{
+\dontrun{
 data(HKdata)
 str(HKdata)
+}
 }
 \keyword{datasets}

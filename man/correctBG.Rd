@@ -44,11 +44,11 @@ Heiko Mannsperger <h.mannsperger@dkfz.de>, Stephan Gade <s.gade@dkfz.de>
  For detailed information about the background correction methods see: \code{\link[limma]{backgroundCorrect}},
 }
 \examples{
-	
+\dontrun{	
 library(RPPanalyzer)
 data(dataI)
 
 dataBGcorrected <- correctBG(dataI,method="normexp")
-
+}
 }
 \keyword{ manip }
