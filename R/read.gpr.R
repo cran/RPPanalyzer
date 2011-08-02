@@ -7,13 +7,19 @@ function(blocksperarray=4,spotter="arrayjet",...){
 
     ## read in slidedescription as data.frame 
     slide.dat <- read.slidedescription()
-    
+
     ## generate character vector with slidenames (gpr filenames) 
     slides <- slides.id(slide.dat)
     
     ## generate the array identifying character vector
     arrays <- array.id(slide.dat)
     
+    
+    ## is a foreground and background is specified?
+    ## read.slidedescription checks if both or none is specified, so we can check for foreground only
+    sigSpec <- "foreground" %in% colnames(slide.dat)
+
+        
     ## calculate lines to skip for the first gpr file
     ## at first get the seperator for the files if given, default is tab
     if(!is.null(readArgs$sep)) {
@@ -29,8 +35,18 @@ function(blocksperarray=4,spotter="arrayjet",...){
     ## generate character vector as identifier for the single spots
     master.t <- read.delim(slides[1], header=T,skip=lines2skip, check.names=F,...)
 
+    ## get the column defining the foreground and background signal columnns in the gpr file
+    if(sigSpec) {
+        fColumn <- unique(slide.dat[slide.dat$gpr==slides[1],"foreground"])[1]
+        bColumn <- unique(slide.dat[slide.dat$gpr==slides[1],"background"])[1]
+    }
+    else {
+        fColumn <- NULL
+        bColumn <- NULL
+    }
+
     ## get the indices of the required columns
-    indices <- createColumnIndices(colnames(master.t)) 
+    indices <- createColumnIndices(colnames(master.t), foreground=fColumn, background=bColumn) 
 
     ## get only these column of the master table
     master.t <- master.t[,unlist(indices)]
@@ -61,14 +77,24 @@ function(blocksperarray=4,spotter="arrayjet",...){
     for(i in seq(along=slides)){
 
         ## calculate lines to skip for the ith gpr file 
-        tbl <- readLines(slides[1], n=2)[2]
+        tbl <- readLines(slides[i], n=2)[2]
         lines2skip <- as.numeric(strsplit(tbl, split=seperator)[[1]][1])+2
-        
+
         ## read gpr data
         data<-read.delim(slides[i],skip=lines2skip, check.names=F,...)
 
+        ## extract colnames of the foreground and background signal from the slidedescription
+        if(sigSpec) {
+            fColumn <- unique(slide.dat[slide.dat$gpr==slides[i],"foreground"])[1]
+            bColumn <- unique(slide.dat[slide.dat$gpr==slides[i],"background"])[1]
+        }
+        else {
+            fColumn <- NULL
+            bColumn <- NULL
+        }
+
         ## get the indices of the required columns
-        indices <- createColumnIndices(colnames(data)) 
+        indices <- createColumnIndices(colnames(data), foreground=fColumn, background=bColumn) 
 
         ## get only these column of the dataable
         data <- data[,unlist(indices)]

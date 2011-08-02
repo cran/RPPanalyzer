@@ -12,7 +12,7 @@ function(x,highest=("dilution"), sample.id=c("sample","sample.n")){
                 
             })
 
-    lines <- do.call("c", ttt)
+    lines <- do.call("c", as.list(ttt))
 
     lines <- xi[[4]][,"ID"] %in% lines
     

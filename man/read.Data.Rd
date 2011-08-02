@@ -63,12 +63,13 @@
 }
 
 \examples{
+\dontrun{
   library(RPPanalyzer)
 
   dataDir <- system.file("data",package="RPPanalyzer")
   setwd(dataDir)
 
   exData <- read.Data()
-}
+}}
 \keyword{ manip }
 

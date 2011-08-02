@@ -85,7 +85,7 @@ calcSuperCurve <- function(x,model="cobs", method="nlrq", sample.id=c("sample","
 
     # get only these entries from each dilution series with the highest concentration
     # we will need the sampledescription of this
-    tempDat <- pick.high.conc(xi)
+    tempDat <- pick.high.conc(xi,sample.id = sample.id)
 
     # pick the lines of the sample description matching to our fitted values
     m <- match(rownames(vals), tempDat[[4]]$identifier)

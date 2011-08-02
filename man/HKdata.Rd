@@ -1,6 +1,6 @@
 \name{HKdata}
 \alias{HKdata}
-\docType{HKdata}
+\docType{data}
 \title{ Reverse phase protein array data of siRNA transfected cell line}
 \description{
    The data Set is a list of four elements. Expression and background are matrices
