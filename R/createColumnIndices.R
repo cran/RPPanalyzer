@@ -27,14 +27,14 @@ createColumnIndices <- function(col.names, foreground=NULL, background=NULL) {
 
     # grep for the column in the header
     # foreground and background can be specified, in case it is not, take the first match for the above patterns
-    colIndices$F <- grep(paste("^\\s*", foreground, "\\s*$",sep=""), col.names, perl=T)[1]
-    colIndices$B <- grep(paste("^\\s*", background, "\\s*$",sep=""), col.names, perl=T)[1]
+    colIndices$F <- grep(paste("^\\s*", foreground, "\\s*$",sep=""), col.names, perl=TRUE)[1]
+    colIndices$B <- grep(paste("^\\s*", background, "\\s*$",sep=""), col.names, perl=TRUE)[1]
 
-    colIndices$Block <- grep("Block", col.names, perl=T)
-    colIndices$Row <- grep("Row", col.names, perl=T)
-    colIndices$Column <- grep("Column", col.names, perl=T)
-    colIndices$ID <- grep("ID", col.names, perl=T)
-    colIndices$Flags <- grep("Flags", col.names, perl=T)
+    colIndices$Block <- grep("Block", col.names, perl=TRUE)
+    colIndices$Row <- grep("Row", col.names, perl=TRUE)
+    colIndices$Column <- grep("Column", col.names, perl=TRUE)
+    colIndices$ID <- grep("ID", col.names, perl=TRUE)
+    colIndices$Flags <- grep("Flags", col.names, perl=TRUE)
 
     # test if we found extactly one column for each colum name
     # since we take the first element for F and B it can be NA if no F and B column was found by the match

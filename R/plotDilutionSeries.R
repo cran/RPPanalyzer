@@ -37,7 +37,7 @@ S.x[S.x <sensible.min] =NA
 S.y[S.y <sensible.min] =NA
 S.x[S.x >sensible.max] =NA
 S.y[S.y >sensible.max] =NA
-fit = nls(S.y ~ a +1/((1/(S.x -a) -c)/D+c),start=list(a=a,D=D,c=1/M),alg="port", lower=list(minimal.err,1,0),weights=1/(minimal.err+abs(S.x)))
+fit = nls(S.y ~ a +1/((1/(S.x -a) -c)/D+c),start=list(a=a,D=D,c=1/M),algorithm="port", lower=list(minimal.err,1,0),weights=1/(minimal.err+abs(S.x)))
 summary(fit)
 a=summary(fit)$parameter[1]
 D=summary(fit)$parameter[2]

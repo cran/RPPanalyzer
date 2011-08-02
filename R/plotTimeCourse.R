@@ -3,7 +3,8 @@
     ,tc.reference=NULL
     ,plot.split="experiment",file="splineplot.pdf"
     ,arrays2rm=c("protein","Blank"),plotformat="rawdata"
-    ,log=T) {
+    ,log=TRUE,
+    color=NULL, xlim=NULL, ylim=NULL) {
 
     ## select the measurements in the data
     data <- select.measurements(x)
@@ -30,13 +31,24 @@
 
     #}
 
-
     plotcount <- unique(datax[[4]][,plot.split])
-
+    
+#~     yt <- (!is.null(ylim) && ylim=="fixed")
+#~     xt <- (!is.null(xlim) && xlim=="fixed")
+#~     if(yt || xt) {
+#~         lims <- get_ranges(plotcount, plot.split, datax, tc.reference, log)
+#~     }
+    
     pdf(file=file)
 
     for ( i in seq(along=plotcount)){
-
+#~         if(yt || xt) {
+#~             if(yt)
+#~                 ylim <- lims$ylims[[i]]
+#~             if(xt)
+#~                 xlim <- lims$xlims[[i]]            
+#~         }
+        
         #tempdat <- select.sample.group(datax,param=plot.split,sel=plotcount[i])
         groupFactor <- list(plotcount[i])
         names(groupFactor) <- plot.split
@@ -51,12 +63,14 @@
         
 
 
-        # create the identiefiers for the different time series in one plot
+        # create the identifiers for the different time series in one plot
 
         time.series <- unique(tempdat[[4]][,"identifier"])
     
         # create a nice looking color vector
-        color <- rainbow(length(time.series))
+        if(is.null(color)) {
+            color <- rainbow(length(time.series))
+        }
 
         # iterate over all arrays/proteins
         for (k in 1:ncol(tempdat[[1]])){
@@ -90,7 +104,7 @@
                 }
                 else {
 
-                    ref <- median(tempdat[[1]][refLines & tempdat[[4]][,"time"]==0,k], na.rm=T)
+                    ref <- median(tempdat[[1]][refLines & tempdat[[4]][,"time"]==0,k], na.rm=TRUE)
 
                 }
             }
@@ -113,13 +127,24 @@
 
             par(lwd=2)
 
+            if(is.null(ylim)) {
+                tdk_sd <- sd(tempdat[[1]][,k])
+                ylim2 <- c(min(tempdat[[1]][,k])-tdk_sd,max(tempdat[[1]][,k])+tdk_sd)
+            } else {
+                ylim2 <- ylim
+            }
+            if(is.null(xlim)) {
+                xlim2 <- c(0,max(tempdat[[4]][,"time"]))
+            } else {
+                xlim2 <- xlim
+            }
             # create the plotting area with a simple plot
             plot(tempdat[[4]][,"time"],tempdat[[1]][,k]
                     ,type="n",main=c(paste("time course: ",plotcount[i]),tempdat[[3]]["target",k])
                     ,ylab="signal",xlab="time"
-                    ,ylim=c(min(tempdat[[1]][,k]),max(tempdat[[1]][,k]))
-                    ,xlim=c(0,max(tempdat[[4]][,"time"])))
-
+                    ,ylim=ylim2
+                    ,xlim=xlim2)
+            
             for (j in seq(along=time.series)) {
 
 
@@ -146,14 +171,22 @@
                     lines(expr.data[,"time"],expr.data[,2],col=color[j],lty="dashed",lwd=1)
                 }
 
-                if (plotformat=="spline" | plotformat=="both"){
+                if (plotformat=="spline" | plotformat=="both" | plotformat=="spline_noconf"){
                     y <- expr.data[,2]
                     tp <- expr.data[,1]
                     splinemodel <- gam(y~s(tp))
-
                     # x-vector for the predictions
                     xn=seq(0,max(tp),0.1)
-
+                    if(plotformat!="spline_noconf") {
+                        ## generate confidence bands
+                        pred2 <- predict(splinemodel, se.fit=TRUE)
+                        upper <- pred2$fit + pred2$se.fit
+                        lower <- pred2$fit - pred2$se.fit
+                        band.color <- paste(col2hex(color[j]),"22", sep="")
+                        polygon(c(tp, rev(tp)), c(upper, rev(lower)), col=band.color, border=NA)
+                        lines(tp, upper, col=paste(col2hex(color[j]),"88", sep=""), lty=2)
+                        lines(tp, lower, col=paste(col2hex(color[j]),"88", sep=""), lty=2)
+                    }
                     ## add spline to plot
                     lines(xn,predict(splinemodel,newdata=data.frame(tp=xn)),
                             col=color[j],lty="solid",lwd=2)
@@ -168,4 +201,61 @@
     }
     dev.off()
 }
-
+#~ 
+#~ get_ranges <- function(plotcount, plot.split, datax, tc.reference, log) {
+#~     ## if ylim="fixed" or ylim=="fixed" get the ranges of x and y axis
+#~     ylims <- xlims <- list()
+#~    for ( i in seq(along=plotcount)){
+#~         #tempdat <- select.sample.group(datax,param=plot.split,sel=plotcount[i])
+#~         groupFactor <- list(plotcount[i])
+#~         names(groupFactor) <- plot.split
+#~         tempdat <- select.sample.group(datax, params=groupFactor)
+#~         ## order data subset
+#~         order.tc <- order(tempdat[[4]][,"identifier"],tempdat[[4]][,"time"])
+#~         tempdat[[1]] <- tempdat[[1]][order.tc,]
+#~         tempdat[[2]] <- tempdat[[2]][order.tc,]
+#~         tempdat[[4]] <- tempdat[[4]][order.tc,]
+#~         # create the identifiers for the different time series in one plot
+#~         time.series <- unique(tempdat[[4]][,"identifier"])
+#~         # iterate over all arrays/proteins
+#~         for (k in 1:ncol(tempdat[[1]])){
+#~             # if a reference is given
+#~             if(!is.null(tc.reference)) {
+#~                 # get the ID for the reference time series
+#~                 refID <- paste(tc.reference, collapse="")
+#~                 # search the time series in the data
+#~                 refLines <-  tempdat[[4]][,"identifier"]==refID
+#~                 # get the zero time point of the time series
+#~                 refLines & tempdat[[4]][,"time"]==0
+#~                 # check there data available, that means if the combination of parameters was valid for this split
+#~                 # if it was, than calculate the reference value
+#~                 # otherwise set the reference value to zero or one, depending on the log status
+#~                 if(!any(refLines) && log) {
+#~                     ref <- 0
+#~                 }
+#~                 else if(!any(refLines) && !log) {
+#~                     ref <- 1
+#~                 }
+#~                 else {
+#~                     ref <- median(tempdat[[1]][refLines & tempdat[[4]][,"time"]==0,k], na.rm=TRUE)
+#~                 }
+#~             }
+#~             # divide by the reference
+#~             if(!is.null(tc.reference) && log) {
+#~                         tempdat[[1]][, k] <- tempdat[[1]][, k] - ref
+#~                         tempdat[[2]][, k] <- tempdat[[2]][, k] - ref
+#~             }
+#~             else if(!is.null(tc.reference) && !log) {
+#~                         tempdat[[1]][, k] <- tempdat[[1]][, k]/ref
+#~                         tempdat[[2]][, k] <- tempdat[[2]][, k]/ref
+#~             }
+#~         }
+#~         # special treatment of fixed argument for ylim
+#~         # use total minimum and maximum as y-axis limits
+#~         ylim <- range(tempdat[[1]])
+#~         xlim <- range(as.numeric(unique(tempdat[[4]][,"time"])))
+#~         ylims[[i]] <- ylim
+#~         xlims[[i]] <- xlim
+#~     }
+#~     return(list(xlims=xlims, ylims=ylims))
+#~ }

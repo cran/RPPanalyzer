@@ -72,7 +72,6 @@ function(blocksperarray=4,spotter="arrayjet",...){
     backg <- NULL
     flags <- NULL
 
-
     ## loop for filling foreground and background with data    
     for(i in seq(along=slides)){
 
@@ -81,7 +80,7 @@ function(blocksperarray=4,spotter="arrayjet",...){
         lines2skip <- as.numeric(strsplit(tbl, split=seperator)[[1]][1])+2
 
         ## read gpr data
-        data<-read.delim(slides[i],skip=lines2skip, check.names=F,...)
+        data<-read.delim(slides[i],skip=lines2skip, check.names=FALSE,...)
 
         ## extract colnames of the foreground and background signal from the slidedescription
         if(sigSpec) {
@@ -122,6 +121,7 @@ function(blocksperarray=4,spotter="arrayjet",...){
         ## loop over the pads for creating a numeric background and foreground matrix 
         ## from a numeric vector
         plevel <- levels(data[,"Block"])
+
         for (j in seq(along=plevel)){
             padlines <- which(data[,"Block"]==plevel[j])
             temp <- data[padlines,]
