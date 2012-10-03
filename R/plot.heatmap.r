@@ -37,15 +37,19 @@ plot.heatmap <- function(data, distance = "euclidean", dendros="both", cutoff=0.
   if(dendros %in% c("column", "both")){
     ## distance by default computes the distance between
     ## the rows of data. Thus it must be transposed!
+    ## For correlation distance, cor computes correlations between the 
+    ## columns of a matrix, thus transposing can be omitted
     if(distance %in% distance.measures)   {dd <- dist(t(data.scaled), method = distance)}
-    else if(distance == "correlation") {dd <- as.dist(t(1 - cor(data.scaled)))}
+    else if(distance == "correlation") {dd <- as.dist(1 - cor(data.scaled))}
 
     col.dendrogram <- as.dendrogram(hclust(dd))
   }
 
   if(dendros %in% c("row", "both")){
+    ## dist gets row distances, no transpose
+    ## cor uses column correlations, thus transpose the data matrix
     if(distance %in% distance.measures)   {dd <- dist(data.scaled, method = distance)}
-    else if(distance == "correlation") {dd <- as.dist(1 - cor(data.scaled))}
+    else if(distance == "correlation") {dd <- as.dist(1 - cor(t(data.scaled)))}
 
     row.dendrogram <- as.dendrogram(hclust(dd))
   }
