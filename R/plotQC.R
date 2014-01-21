@@ -32,7 +32,7 @@ function(x,file="target_vs_blank.pdf",arrays2rm=c("protein")){
           plot(x=NULL,y=NULL
                , main=c(paste("target: ",temp.arrays["target",i],"  Ab: ",temp.arrays["AB_ID",i])
                         ,paste("incubation run: ",inc.run[j]))
-               ,xlab="concentration",ylab="signal intensity"
+               ,xlab="concentration",ylab="signal intensity [a.u.]"
                ,ylim=c(0,max(c(temp.dat[,i],temp.dat[,blk.col])))
                ,xlim=c(0,max(x[[4]][ctrl.lines,"concentration"])))
 

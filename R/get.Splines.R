@@ -1,6 +1,5 @@
 `get.Splines` <-
 function(expr.data){
-stopifnot(require(gam))
 
 y <- expr.data[,2]
 tp <- expr.data[,1]

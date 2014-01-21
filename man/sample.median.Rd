@@ -32,14 +32,14 @@ Aggregate the replicates in an RPPA data set
 }
 
 \examples{
-
+\dontrun{
 	library(RPPanalyzer)
 	
    data(dataI)
    dataI_bgcorr <- correctBG(dataI,method="normexp")
 	
 	data.median <- sample.median(dataI_bgcorr)
-
+}
 }
 \keyword{ manip }
 

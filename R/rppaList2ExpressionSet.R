@@ -1,6 +1,5 @@
 `rppaList2ExpressionSet` <-
 function(x) {
-stopifnot(require(Biobase))
 if (length(x)==3){
   ns <- x[[1]] ## normalized signal
   pd <- x[[2]] ## phenodata

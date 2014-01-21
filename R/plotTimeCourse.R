@@ -1,8 +1,8 @@
 `plotTimeCourse` <- function (x
     ,tc.identifier=c("sample","stimulation","inhibition","stim_concentration")
     ,tc.reference=NULL
-    ,plot.split="experiment",file="splineplot.pdf"
-    ,arrays2rm=c("protein","Blank"),plotformat="rawdata"
+    ,plot.split="experiment",file=NULL
+    ,arrays2rm=c("protein","Blank"),plotformat="stderr"
     ,log=TRUE,
     color=NULL, xlim=NULL, ylim=NULL) {
 
@@ -38,8 +38,10 @@
 #~     if(yt || xt) {
 #~         lims <- get_ranges(plotcount, plot.split, datax, tc.reference, log)
 #~     }
-    
-    pdf(file=file)
+    if(!is.null(file)) {
+		pdf(file=file)
+		
+	}
 
     for ( i in seq(along=plotcount)){
 #~         if(yt || xt) {
@@ -161,25 +163,35 @@
                 expr.data <- expr.data[order(expr.data[,"time"]),]
 
 
-                if (plotformat=="rawdata" | plotformat=="both"){
-
+                #if (plotformat=="rawdata" | plotformat=="both" | plotformat=="errbar"){
+                if(plotformat %in% c("rawdata", "both", "errbar")) {
+#browser()
+					if(plotformat=="errbar") {
+						errbar.col <- color[j]
+					} else {
+						errbar.col <- "black"
+					}
                     errbar(expr.data[,"time"],expr.data[,2]
                             ,expr.data[,2]+expr.data[,3]
                             ,expr.data[,2]-expr.data[,3]
-                            ,col=color[j],add=T)
-
-                    lines(expr.data[,"time"],expr.data[,2],col=color[j],lty="dashed",lwd=1)
+                            ,col=color[j],add=TRUE,
+                            errbar.col=errbar.col)
+					if(!plotformat %in% "errbar") {
+						lines(expr.data[,"time"],expr.data[,2],col=color[j],lty="dashed",lwd=1)
+					}
                 }
 
-                if (plotformat=="spline" | plotformat=="both" | plotformat=="spline_noconf"){
+                #if (plotformat=="spline" | plotformat=="both" | plotformat=="spline_noconf" | plotformat=="errbar"){
+                if(plotformat %in% c("spline", "both", "spline_noconf", "errbar", "stderr")) {
                     y <- expr.data[,2]
                     tp <- expr.data[,1]
                     splinemodel <- gam(y~s(tp))
                     # x-vector for the predictions
                     xn=seq(0,max(tp),0.1)
-                    if(plotformat!="spline_noconf") {
+                    ## standard error prediction
+                    pred2 <- predict(splinemodel, se.fit=TRUE)
+                    if(!plotformat %in% c("spline_noconf", "errbar", "stderr")) {
                         ## generate confidence bands
-                        pred2 <- predict(splinemodel, se.fit=TRUE)
                         upper <- pred2$fit + pred2$se.fit
                         lower <- pred2$fit - pred2$se.fit
                         band.color <- paste(col2hex(color[j]),"22", sep="")
@@ -188,8 +200,18 @@
                         lines(tp, lower, col=paste(col2hex(color[j]),"88", sep=""), lty=2)
                     }
                     ## add spline to plot
-                    lines(xn,predict(splinemodel,newdata=data.frame(tp=xn)),
-                            col=color[j],lty="solid",lwd=2)
+                    pred <- predict(splinemodel,newdata=data.frame(tp=xn))
+                    lines(xn, pred, col=color[j], lty="solid", lwd=2)
+                    
+                    if(plotformat %in% "stderr") {
+						 errbar(tp,pred2$fit
+                            ,pred2$fit+pred2$se.fit
+                            ,pred2$fit-pred2$se.fit
+                            ,col=color[j],add=TRUE,
+                            errbar.col=color[j])
+					}
+                    
+                   
                 }
             }
 
@@ -199,7 +221,9 @@
 
         }
     }
-    dev.off()
+    if(!is.null(file)) {
+		dev.off()
+	}
 }
 #~ 
 #~ get_ranges <- function(plotcount, plot.split, datax, tc.reference, log) {

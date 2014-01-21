@@ -65,11 +65,10 @@
 \examples{
 \dontrun{
   library(RPPanalyzer)
-
-  dataDir <- system.file("data",package="RPPanalyzer")
+  
+  dataDir <- system.file("extdata", package="RPPanalyzer")
   setwd(dataDir)
-
-  exData <- read.Data()
+  rawdata <- read.Data(blocksperarray=12, spotter="aushon", printFlags=FALSE)
 }}
 \keyword{ manip }
 

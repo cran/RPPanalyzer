@@ -30,10 +30,11 @@
 }
 
 \examples{
+\dontrun{
 	library(RPPanalyzer)
 	data(dataIII)
 	dataIII_median <- sample.median(dataIII)
 	measures <- select.measurements(dataIII_median)
-	
+	}
 }
 \keyword{ manip }

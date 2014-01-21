@@ -59,9 +59,6 @@ function(x, method="normexp") {
     }
     ## limma bg correction method
     else {
-	if(!require(limma)) {
-	    stop("The limma package is needed by this function!")
-	}
 
 	## construct a RG List with both channels have the same values
 	RG <- new("RGList", list(R=x[[1]], Rb=x[[2]], G=x[[1]], Gb=x[[2]]))

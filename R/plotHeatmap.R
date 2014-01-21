@@ -6,31 +6,39 @@
 #' the cutoff percentile will be set to the same value.
 #'
 #' @param data a normalized but not scaled matrix
-#' @param distance the distance measure to be used. One of c("euclidean","maximum","manhattan","canberra","binary","minkowski","correlation")
+#' @param distance the distance measure to be used. One of c("eucsq", "euclidean","maximum","manhattan","canberra","binary","minkowski","correlation")
 #' @param dendros which dedrograms should be computed. One of c("row","column","both","none")
 #' @param cutoff the percentile(s) where to censor the data. If one value, the cutoff is used as lower percentile and the upper cutoff is set to 1-cutoff.
 #'        Otherwise, if two values are provided the first is used for the lower percentile and the second for the upper percentile.
 #' @param toFile should the heatmap plotted into a PDF-file
 #' @param fileName a file name
 #' @param cols a vector of colors
+#' @param hclust.method A method to be used for hierarchical clustering. See help for hclust.
 #' @param ... additional parameters passed to heatmap.2
 #' @return the a list containing the row and column dendrogram of the matrix
-#' @note \code{plot.heatmap} is a wrapper for heatmap.2
+#' @note \code{plotHeatmap} is a wrapper for heatmap.2
 #' it does a row wise scaling.
 #' @author Marc Johannes \email{M.Johannes@@dkfz.de}
-plot.heatmap <- function(data, distance = "euclidean", dendros="both", cutoff=0.005, toFile=F, fileName="Heatmap.pdf", cols=colorpanel(100, low="blue",mid="yellow",high="red"), ...){
+plotHeatmap <- function(data, distance = "eucsq", dendros="both", cutoff=0.005, toFile=FALSE, fileName="Heatmap.pdf", cols=colorpanel(100, low="blue",mid="yellow",high="red"), hclust.method="ward", scale="row", ...){
 
-  stopifnot(require(gplots))
-  
-  distance.measures   <- c("euclidean","maximum","manhattan","canberra","binary","minkowski")
+
+  distance.measures   <- c("eucsq", "euclidean","maximum","manhattan","canberra","binary","minkowski")
   dendro.orientation  <- c("row","column","both","none")
 
   if(!(distance %in% c(distance.measures, "correlation"))){stop(paste("Distance ", distance, " not implemented, yet\n", sep=""))}
 
   if(!(dendros %in% dendro.orientation)) { stop(paste("dendros must be one of: ",paste(dendro.orientation, collapse=","), sep=""))}
 
-  ## scale the rows of the data  
-  data.scaled = t(scale(t(data)))
+  if(scale=="row") {
+	## scale the rows of the data  
+	data.scaled = t(scale(t(data)))
+  } else if(scale=="col") {
+	data.scaled = scale(data)
+  } else if(scale=="both") {
+	data.scaled = t(scale(t(scale(data))))
+  } else {
+	data.scaled = data
+  }
 
   dd <- col.dendrogram <- row.dendrogram <- NULL
 
@@ -39,19 +47,33 @@ plot.heatmap <- function(data, distance = "euclidean", dendros="both", cutoff=0.
     ## the rows of data. Thus it must be transposed!
     ## For correlation distance, cor computes correlations between the 
     ## columns of a matrix, thus transposing can be omitted
-    if(distance %in% distance.measures)   {dd <- dist(t(data.scaled), method = distance)}
-    else if(distance == "correlation") {dd <- as.dist(1 - cor(data.scaled))}
-
-    col.dendrogram <- as.dendrogram(hclust(dd))
+    if(distance %in% distance.measures)   {
+		if(distance == "eucsq") {
+			dd <- dist(t(data.scaled), method = "euclidean")^2
+		} else {
+			dd <- dist(t(data.scaled), method = distance)
+		}
+	} else if(distance == "correlation") {
+		dd <- as.dist(1 - cor(data.scaled))
+	}
+	
+    col.dendrogram <- as.dendrogram(hclust(dd,method=hclust.method))
   }
 
   if(dendros %in% c("row", "both")){
     ## dist gets row distances, no transpose
     ## cor uses column correlations, thus transpose the data matrix
-    if(distance %in% distance.measures)   {dd <- dist(data.scaled, method = distance)}
-    else if(distance == "correlation") {dd <- as.dist(1 - cor(t(data.scaled)))}
-
-    row.dendrogram <- as.dendrogram(hclust(dd))
+    if(distance %in% distance.measures)   {
+    	if(distance == "eucsq") {
+			dd <- dist(data.scaled, method = "euclidean")^2
+		} else {
+			dd <- dist(data.scaled, method = distance)
+		}
+	} else if(distance == "correlation") {
+		dd <- as.dist(1 - cor(t(data.scaled)))
+	}
+	
+    row.dendrogram <- as.dendrogram(hclust(dd, method=hclust.method))
   }
 
   ## censor the data, i.e. use only
@@ -73,14 +95,14 @@ plot.heatmap <- function(data, distance = "euclidean", dendros="both", cutoff=0.
   lower.quant   <- quantile(data.censored, lower.cutoff)
   upper.quant   <- quantile(data.censored, upper.cutoff)
 
-  print(paste("Discarding ",sum(data.censored < lower.quant), "values below lower ", lower.cutoff*100, "% qunantile and ",sum(data.censored > upper.quant), "values above upper ", upper.cutoff*100, "% quantile",sep=""))
+  print(paste("Discarding ",sum(data.censored < lower.quant), "values below lower ", lower.cutoff*100, "% quantile and ",sum(data.censored > upper.quant), " values above upper ", upper.cutoff*100, "% quantile",sep=""))
   
   data.censored[data.censored < lower.quant] <- lower.quant
   data.censored[data.censored > upper.quant] <- upper.quant
 
-  if(toFile == T) pdf(file=fileName)
+  if(toFile) pdf(file=fileName)
 
-  heatmap.2(data.censored, Colv=col.dendrogram, Rowv=row.dendrogram, col=cols ,scale="none", symkey=F, trace="none", cexRow=0.3, cexCol=0.3, dendrogram=dendros,...)
+  heatmap.2(data.censored, Colv=col.dendrogram, Rowv=row.dendrogram, col=cols ,scale="none", symkey=FALSE, trace="none", cexRow=0.3, cexCol=0.3, dendrogram=dendros,...)
   
   if(toFile){
     dev.off()

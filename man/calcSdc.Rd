@@ -11,7 +11,10 @@
 }
 
 \usage{
-    calcSdc(x,sample.id=c("sample","sample.n"),sel=c("measurement","control"),dilution="dilution", D0=2,sensible.min=5, sensible.max=1.e9,minimal.err=5, plot=T, r=1.2)
+    calcSdc(x,sample.id=c("sample","sample.n"),
+		sel=c("measurement","control"), dilution="dilution",
+		D0=2,sensible.min=5, sensible.max=1.e9,minimal.err=5,
+		plot=T, r=1.2)
 }
 
 \arguments{
@@ -45,11 +48,13 @@
 \author{Heiko Mannsperger <h.mannsperger@dkfz.de>, Stephan Gade <s.gade@dkfz.de> }
     
 \examples{
+\dontrun{
     library(RPPanalyzer)
     data(ser.dil.samples)
 
     ser.dil_median <- sample.median(ser.dil.samples)
     predicted.data <- calcSdc(ser.dil_median,D0=2,sel=c("measurement"), dilution="dilution")
+}
 }
 
 \keyword{ manip }

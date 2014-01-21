@@ -30,7 +30,9 @@ matrices annotating the samples. The columns "sample", "stimulation",
 }
 
 \examples{
+\dontrun{
 data(dataII)
 str(dataII)
+}
 }
 \keyword{datasets}

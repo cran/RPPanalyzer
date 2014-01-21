@@ -1,7 +1,6 @@
 `curveFitSigmoid` <-
 function(x,y, xVal=NULL, plot=F, detectionLimit=F)  {
 	
-	stopifnot(require(quantreg))
     uniqueX <- sort(unique(x))
 
     if (detectionLimit)  {
