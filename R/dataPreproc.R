@@ -1,4 +1,4 @@
-dataPreproc<-function(dataDir=getwd(), blocks=12, spot="aushon", exportNo=4, correct="both"){
+dataPreproc<-function(dataDir=getwd(), blocks=12, spot="aushon", exportNo=3, correct="both"){
                    
   ################################################################################
   # 1. Import and convert raw data from ".gpr"-files, slide- & sampledescription #
@@ -79,7 +79,16 @@ dataPreproc<-function(dataDir=getwd(), blocks=12, spot="aushon", exportNo=4, cor
     cordat[[4]]<-cordat[[4]][which(cordat[[4]]$sample_type=="measurement"),]
     names(cordat)<-names(rawdat)
   }else{ # do not use intercept correction at all
-    cordat<-rawdat
+    cordat <- list()
+    cordat[[1]] <- as.matrix(fgRaw[which(fgRaw$sample_type == "measurement"), colnames(arrayDesc)])
+    cordat[[2]] <- as.matrix(bgRaw[which(bgRaw$sample_type == "measurement"), colnames(cordat[[1]])])
+    cordat[[3]] <- rawdat$arraydescription[, colnames(cordat[[1]])]
+    cordat[[4]] <- rawdat$sampledescription
+    if (length(fgNAVec) > 0) {
+      cordat[[4]] <- rawdat$sampledescription[-fgNAVec, ]
+    }
+    cordat[[4]] <- cordat[[4]][which(cordat[[4]]$sample_type == "measurement"), ]
+    names(cordat) <- names(rawdat)
   }
   
   

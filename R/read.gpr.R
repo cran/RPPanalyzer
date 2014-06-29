@@ -1,5 +1,5 @@
 `read.gpr` <-
-function(blocksperarray=4,spotter="arrayjet",...){
+function(blocksperarray=4,spotter="arrayjet", remove_flagged=NULL, ...){
 
 
     ## get additional arguments to read.delim
@@ -138,6 +138,30 @@ function(blocksperarray=4,spotter="arrayjet",...){
     colnames (backg) <- arrays
     rownames (flags) <- id
     colnames (flags) <- arrays
+    
+    ## remove flagged samples below a value of remove_flagged, if specified
+    if(!is.null(remove_flagged)) {
+		fltruth <- flags<=-abs(remove_flagged)
+		flagremove <- which(rowSums(fltruth)>0)
+		if(length(flagremove)>0) {
+			print(paste("Removing the following flagged samples with flag value less than or equal -", abs(remove_flagged), ":", sep=""))
+			print(t(t(flagremove)))
+			forg<-forg[-flagremove,,drop=FALSE]
+			backg<-backg[-flagremove,,drop=FALSE]
+			flags<-flags[-flagremove,,drop=FALSE]
+			localization<-localization[-flagremove,,drop=FALSE]
+			id <- id[-flagremove]
+		}
+    }
+    
+    ## remove samples with empty id value
+    idx<-which(id=="-")
+    if(length(idx)>0){
+      forg<-forg[-idx,,drop=FALSE]
+      backg<-backg[-idx,,drop=FALSE]
+      flags<-flags[-idx,,drop=FALSE]
+      localization<-localization[-idx,,drop=FALSE]
+    }
 
     ## store matrixes in list
     vals <- list(expression=forg, background=backg,Flags=flags, localization=localization)

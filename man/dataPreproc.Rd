@@ -10,14 +10,14 @@ Additionally plots for quality checks are generated including dilutions and BLAN
 
 }
 \usage{
-  dataPreproc(dataDir=getwd(), blocks=12, spot="aushon", exportNo=4, correct="both")
+  dataPreproc(dataDir=getwd(), blocks=12, spot="aushon", exportNo=3, correct="both")
 }
 
 \arguments{
   \item{dataDir}{directory of gpr files, slidedescription.txt and sampledescription.txt, default is the current working directory}
   \item{blocks}{see \code{blocksperarray} in \code{\link{read.Data}}, default is 12}
   \item{spot}{see \code{spotter} in \code{\link{read.Data}}, default is "aushon"}
-  \item{exportNo}{see \code{exportNo} in \code{\link{correctDilinterc}}, integer of 1-4 defining the linear fit to be used (1: constant, 2: antibody, 3: antibody + slide, 4: antibody + slide + sample), default is 4}
+  \item{exportNo}{see \code{exportNo} in \code{\link{correctDilinterc}}, integer of 1-4 defining the linear fit to be used (1: constant, 2: antibody, 3: antibody + slide, 4: antibody + slide + sample), default is 3}
   \item{correct}{"both" applies \code{\link{correctDilinterc}} to all measurements, including FCF. "none" does not use this BG correction at all. "noFCF" applies \code{\link{correctDilinterc}} to all but not FCF measurements. The default is "both".}
 }
 \value{

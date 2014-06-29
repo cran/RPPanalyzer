@@ -1,9 +1,9 @@
 `read.Data` <-
 function(blocksperarray=4,spotter="arrayjet",writetable=FALSE,printFlags=FALSE,
-        fileName="Flagged_spots.csv", ...){
+        fileName="Flagged_spots.csv", remove_flagged=NULL, ...){
 
     ## read gprfiles
-    temp.dat <-  read.gpr(blocksperarray=blocksperarray,spotter=spotter,...)
+    temp.dat <-  read.gpr(blocksperarray=blocksperarray,spotter=spotter, remove_flagged=remove_flagged, ...)
     ## annotate arrays
     incubation <- read.slidedescription()
     temp.dat.i <- annotate.arrays (temp.dat,incubation)

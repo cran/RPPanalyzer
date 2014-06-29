@@ -24,7 +24,7 @@ The last one updates the original timeseries signal to (foreground expression - 
   \item{dilseries}{foreground signal matrix as result of \code{\link{write.Data}} and import of resulting txt file, but just sample_type "control", i.e. dilution series}
   \item{arraydesc}{"arraydescription" matrix of the RPPA data set list}
   \item{timeseries}{foreground signal matrix as result of \code{\link{write.Data}} and import of resulting txt file, but just sample_type "measurement"}
-  \item{exportNo}{integer of 1-4 (see R script) which of the linear fits should be exported to the attribute of the result, variable for \code{analyzeIntercepts()}}
+  \item{exportNo}{integer of 1-4 which of the linear fits should be exported to the attribute of the result, variable for \code{analyzeIntercepts()}, 1: constant, 2: antibody, 3: antibody + slide (default) or antibody + slide + sample (\code{dilSeriesID})}
   \item{intercepts}{output of \code{getIntercepts()}, data frame with columns for dilSeriesID and slide/pad/incubationRun/spottingRun number as well as antibody, estimated intercept and estimated error of intercept}
   \item{test}{test parameter for ANOVA (see documentation of \code{\link{anova}}), default is "F"}
   \item{export}{see \code{exportNo}}

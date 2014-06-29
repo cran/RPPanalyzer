@@ -116,11 +116,16 @@ correctDilinterc <- function(dilseries, arraydesc, timeseries, exportNo) {
       fit[[1]] <- lm(intercept ~ 1, data=intercepts, weights=1/errIntercept^2)
       fit[[2]] <- lm(intercept ~ ab, data=intercepts, weights=1/errIntercept^2)
       fit[[3]] <- lm(intercept ~ ab + slide, data=intercepts, weights=1/errIntercept^2)
-      fit[[4]] <- lm(intercept ~ ab + slide + dilseries_id, data=intercepts, weights=1/errIntercept^2)
-      
-      ano <- anova(fit[[1]], fit[[2]], fit[[3]], fit[[4]], test=test)
-      rss <- ano$RSS
-      names(rss) <- c("const.", "+ ab", "+ slide", "+ dilseries_id")
+      if(length(unique(intercepts$dilseries_id))>1){
+        fit[[4]] <- lm(intercept ~ ab + slide + dilseries_id, data=intercepts, weights=1/errIntercept^2)
+        ano <- anova(fit[[1]], fit[[2]], fit[[3]], fit[[4]], test=test)
+        rss <- ano$RSS
+        names(rss) <- c("const.", "+ ab", "+ slide", "+ dilseries_id")
+      }else{
+        ano <- anova(fit[[1]], fit[[2]], fit[[3]], test=test)
+        rss <- ano$RSS
+        names(rss) <- c("const.", "+ ab", "+ slide")
+      }
       pdf("anovaIntercepts_Output.pdf")
       barplot(rss, ylab="weighted RSS")
       dev.off()

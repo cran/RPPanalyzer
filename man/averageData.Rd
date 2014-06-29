@@ -16,7 +16,7 @@ averageData(subsample, scaling = c("slide", "replicate"),
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{subsample}{
-  data.frame with columns "slide" (factor, the slide names), "ab" (factor, the antibody/target names), "time" (numeric, the time points), "signal" (numeric, signal values), "sigma0" (numeric, error parameter for the constant error), "sigmaR" (numeric, error parameter for the relative error). The data.frame may contain further columns that can then be used in the \code{scaling} and \code{distinguish} arguments. The data.frame is a standard output of \code{\link{getErrorModel}}.
+  data.frame with columns "slide" (factor, the slide names), "ab" (factor, the antibody/target names), "time" (numeric, the time points), "signal" (numeric, signal values), "var0" (numeric, error parameter for the constant error), "varR" (numeric, error parameter for the relative error). The data.frame may contain further columns that can then be used in the \code{scaling} and \code{distinguish} arguments. The data.frame is a standard output of \code{\link{getErrorModel}}.
 }
   \item{scaling}{
   character. One scaling parameter ist estimated for each occurring combination of the corresponding factors.

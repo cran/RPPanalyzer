@@ -10,7 +10,7 @@
 }
 \usage{
    read.Data(blocksperarray = 4, spotter = "arrayjet", writetable = FALSE,
-   printFlags=FALSE,fileName="Flagged_spots.csv",...)
+   printFlags=FALSE,fileName="Flagged_spots.csv", remove_flagged=NULL, ...)
 }
 \arguments{
   \item{blocksperarray}{
@@ -24,6 +24,7 @@
   }
   \item{printFlags}{logical. If true flagged spots will exported as csv file}
   \item{fileName}{character string naming the csv file for the flagged spots}
+  \item{remove_flagged}{Either NULL or an integer. If an integer, looks into column \code{Flags} of the gpr file and removes samples with flag value less than or equal \code{-remove_flagged} from the data tables.}
   \item{...}{any other arguments passed to read.gpr}
 }
 \details{
@@ -68,7 +69,12 @@
   
   dataDir <- system.file("extdata", package="RPPanalyzer")
   setwd(dataDir)
-  rawdata <- read.Data(blocksperarray=12, spotter="aushon", printFlags=FALSE)
+  rawdata <- read.Data(blocksperarray=12, spotter="aushon", printFlags=FALSE, remove_flagged=NULL)
+  print(dim(rawdata$expression))
+  
+  rawdata <- read.Data(blocksperarray=12, spotter="aushon", printFlags=FALSE, remove_flagged=50)
+  print(dim(rawdata$expression))
+  
 }}
 \keyword{ manip }
 

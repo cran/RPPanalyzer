@@ -119,7 +119,7 @@ getErrorModel <- function(dataexpression, verbose=FALSE) {
       }
       
       
-      if(class(fit)!="try-error") result <- rbind(result, cbind(subset2, data.frame(sigma0=coef(fit)[1], sigmaR = coef(fit)[2]))) else result <- rbind(result, cbind(subset2, data.frame(sigma0=NA, sigmaR = NA)))
+      if(class(fit)!="try-error") result <- rbind(result, cbind(subset2, data.frame(var0=coef(fit)[1], varR= coef(fit)[2]))) else result <- rbind(result, cbind(subset2, data.frame(var0=NA, varR= NA)))
       
       
     }
