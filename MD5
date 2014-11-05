@@ -1,4 +1,4 @@
-5556b47dde1c1516b5e256866683597a *DESCRIPTION
+afc66001e5fe26b649d37e9788029249 *DESCRIPTION
 388c203f3a24049b5c7087308b04e1b2 *NAMESPACE
 9b5816cf9499a4e5477ad7cb46b0476d *R/Sips.R
 d24f8685a1fbbf0fe3e95b8dda4bd20c *R/annotate.arrays.R
@@ -16,7 +16,7 @@ f1ebd2cde1c1b358c53df3a5d575d289 *R/curveFitLinear.R
 98c2e38d866dd727e1cbdbcf735ef2d9 *R/curveFitSigmoid.R
 9d2e9b2c531c2e27e553d80eee5c04ef *R/curvePredictLinear.R
 5a2b1a3ca164951c9898d28af37b6888 *R/curvePredictSigmoid.R
-ec168f755c34ed3d1c15924e57d60070 *R/dataPreproc.R
+8e9e7a8f6c20e5e688d17e3c02ce6855 *R/dataPreproc.R
 d32fb4a06ac79794cfe432cfab38ea56 *R/dil.ser.id.R
 3430ccf3ac0169c78fb3ba0a262724f4 *R/g.link.R
 389aef31ac4df77ed591526a1f69f4c6 *R/get.Splines.R
@@ -56,7 +56,7 @@ ab0dca3bb8f18da1896128909b4c77e7 *R/spotbyspot.R
 36e86ed957520c5babae0ef36d9375c8 *R/sub.ID.R
 c8b2465ddce662cdd4ebcad75dc7aafa *R/test.correlation.R
 d6532a370433129328090dcb221495a0 *R/write.Data.R
-3e65354b6aa6176e7530fd3ff777e47f *build/vignette.rds
+4349f67ee5ad572668e80901add043e1 *build/vignette.rds
 dbdc9417236ecbd5d1356bacd45234f8 *data/HKdata.RData
 0d0e8ef378ed86286c4919b26ac7a72c *data/dataI.RData
 302c1aadfff377326a6c94a5020602d4 *data/dataII.RData
@@ -88,7 +88,7 @@ f7d868d6119c5b32be42964aa9bd26b7 *man/curvePredictSigmoid.Rd
 b2b0507aee5b857b08abab7d9e28facc *man/dataI.Rd
 e02f2decf3220fcb6f0989e7bd74930a *man/dataII.Rd
 0977539fe7d5ec3390b2a48aa3fa72e2 *man/dataIII.Rd
-5188e0d6ef43ae882be3108f6b55df45 *man/dataPreproc.Rd
+780f5238ae51abc8817846bf5970ae5d *man/dataPreproc.Rd
 693dfe7d455553a98d4bd7121ce7661a *man/getErrorModel.Rd
 d789de25f9ddb7108ac089ef0442a9a2 *man/logList.Rd
 de443f0b558544d8ccff065b9754f35c *man/normalizeRPPA.Rd

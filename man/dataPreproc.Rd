@@ -10,7 +10,8 @@ Additionally plots for quality checks are generated including dilutions and BLAN
 
 }
 \usage{
-  dataPreproc(dataDir=getwd(), blocks=12, spot="aushon", exportNo=3, correct="both")
+  dataPreproc(dataDir=getwd(), blocks=12, spot="aushon",
+  exportNo=3, correct="both", remove_flagged=NULL)
 }
 
 \arguments{
@@ -19,6 +20,7 @@ Additionally plots for quality checks are generated including dilutions and BLAN
   \item{spot}{see \code{spotter} in \code{\link{read.Data}}, default is "aushon"}
   \item{exportNo}{see \code{exportNo} in \code{\link{correctDilinterc}}, integer of 1-4 defining the linear fit to be used (1: constant, 2: antibody, 3: antibody + slide, 4: antibody + slide + sample), default is 3}
   \item{correct}{"both" applies \code{\link{correctDilinterc}} to all measurements, including FCF. "none" does not use this BG correction at all. "noFCF" applies \code{\link{correctDilinterc}} to all but not FCF measurements. The default is "both".}
+  \item{remove_flagged}{Either NULL or an integer. If an integer, looks into column \code{Flags} of the gpr file and removes samples with flag value less than or equal \code{-remove_flagged} from the data tables.}  
 }
 \value{
 A list of 4 elements is returned.
