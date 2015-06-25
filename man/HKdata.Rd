@@ -29,7 +29,7 @@ background matrix and annotates the samples.
 }
 
 \examples{
-\dontrun{
+\donttest{
 data(HKdata)
 str(HKdata)
 }

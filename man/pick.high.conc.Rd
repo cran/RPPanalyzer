@@ -35,12 +35,10 @@ An RPPA data list containing only the samples with the highest concentration of 
 }
 
 \examples{
-\dontrun{
    library(RPPanalyzer)
    data(ser.dil.samples)
 
    dataHighcon <- pick.high.conc(ser.dil.samples,highest="dilution")
-}
 }
 
 \keyword{ manip }

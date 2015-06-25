@@ -24,11 +24,9 @@ plotQC(x, file = "target_vs_blank.pdf", arrays2rm = c("protein"))
 }
 \author{ Heiko Mannsperger <h.mannsperger@dkfz.de>}
 \examples{
-	\dontrun{
 library(RPPanalyzer)
 data(dataIII)
 
 plotQC(dataIII,file="plotQC.pdf")
-}
 }
 \keyword{ hplot }

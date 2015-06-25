@@ -47,13 +47,11 @@ for calculation of serial diluted samples only
 }
 
 \examples{
-\dontrun{
 library(RPPanalyzer)
 data(ser.dil.samples)
 
 predicted.data <- calcLinear(ser.dil.samples,sample.id=c("sample","sample.n"),
 dilution="dilution")
-}
 }
 \keyword{ manip }
 

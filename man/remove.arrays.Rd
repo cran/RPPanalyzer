@@ -35,12 +35,10 @@ remove.arrays(x, param = "target", arrays2rm = c("protein", "blank", "housekeepi
 }
 
 \examples{
-\dontrun{
         library(RPPanalyzer)
         data(dataIII)
             
         DT <- remove.arrays(dataIII, param = "target", arrays2rm = c("protein"))
-}
 }
 
 \keyword{ manip }

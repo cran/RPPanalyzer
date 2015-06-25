@@ -49,12 +49,10 @@ Heiko Mannsperger <h.mannsperger@dkfz.de>, Stephan Gade <s.gade@dkfz.de>
 }
 
 \examples{
-\dontrun{
 library(RPPanalyzer)
 data(ser.dil.samples)
 
 predicted.data <- calcLogistic(ser.dil.samples, sample.id=c("sample","sample.n"),
 dilution="dilution")
 }
-}                            
 \keyword{ manip }

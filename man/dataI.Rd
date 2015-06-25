@@ -31,7 +31,7 @@ columns "ID", "sample_type", "sample", "concentration", and "dilution"
 }
 
 \examples{
-\dontrun{
+\donttest{
 data(dataI)
 str(dataI)
 }

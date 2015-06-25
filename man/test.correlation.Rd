@@ -44,12 +44,10 @@ test.correlation(x, param, method.cor = "kendall",
    
 }
 \examples{
-\dontrun{
 library(RPPanalyzer)
 data(dataIII)
 dataIII_median <- sample.median(dataIII)
 test.correlation(dataIII_median,param="staging")
-}
 
 }
 

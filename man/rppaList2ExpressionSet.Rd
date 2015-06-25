@@ -27,13 +27,11 @@
    Heiko Mannsperger <h.mannsperger@dkfz.de>
 }
 \examples{
-	\dontrun{
 	library(RPPanalyzer)
 	data(dataI)
    dataI_bgcorr <- correctBG(dataI,method="normexp")
 	dataI_median <- sample.median(dataI_bgcorr)
 	expr.set <- rppaList2ExpressionSet(dataI_median)
     }
-}
 
 \keyword{ manip }

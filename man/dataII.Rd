@@ -30,7 +30,7 @@ matrices annotating the samples. The columns "sample", "stimulation",
 }
 
 \examples{
-\dontrun{
+\donttest{
 data(dataII)
 str(dataII)
 }

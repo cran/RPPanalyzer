@@ -50,7 +50,6 @@ writetable = F,vals="logged")
 }
 \author{Heiko Mannsperger <h.mannsperger@dkfz-heidelberg.de>}
 \examples{
-\dontrun{
 	library(RPPanalyzer)
 	data(dataI)
 	dataI_bgcorr <- correctBG(dataI,method="normexp")
@@ -59,6 +58,5 @@ writetable = F,vals="logged")
 	normDye <- normalizeRPPA(dataIb,method="proteinDye")
 	normPassay <- normalizeRPPA(dataIb,method="extValue",useCol="concentration")
 	normHK <-  normalizeRPPA(dataIb,method="housekeeping",normalizer="housekeeping")
-}
 }
 \keyword{manip }

@@ -25,11 +25,9 @@
 }
 \author{ Heiko Mannsperger <h.mannsperger@dkfz.de> }
 \examples{
-	\dontrun{
 	library(RPPanalyzer)
 	data(dataIII)
    plotMeasurementsQC(dataIII,file="control_plot.pdf")
-}
 }
 
 \keyword{ hplot }

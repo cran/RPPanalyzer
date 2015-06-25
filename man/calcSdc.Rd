@@ -48,13 +48,10 @@
 \author{Heiko Mannsperger <h.mannsperger@dkfz.de>, Stephan Gade <s.gade@dkfz.de> }
     
 \examples{
-\dontrun{
     library(RPPanalyzer)
     data(ser.dil.samples)
 
     ser.dil_median <- sample.median(ser.dil.samples)
     predicted.data <- calcSdc(ser.dil_median,D0=2,sel=c("measurement"), dilution="dilution")
 }
-}
-
 \keyword{ manip }
