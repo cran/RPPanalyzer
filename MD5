@@ -1,5 +1,5 @@
-04c8b9d0cd709f31dffe92bdd0c0a9a4 *DESCRIPTION
-388c203f3a24049b5c7087308b04e1b2 *NAMESPACE
+e41ac9d9d6091b6a9c434b81a26d8b50 *DESCRIPTION
+782c6074d3ce0c8247e671ed77148821 *NAMESPACE
 9b5816cf9499a4e5477ad7cb46b0476d *R/Sips.R
 d24f8685a1fbbf0fe3e95b8dda4bd20c *R/annotate.arrays.R
 887cd89af109a06ff88c9be1a58e6023 *R/annotate.samples.R
@@ -56,7 +56,7 @@ ab0dca3bb8f18da1896128909b4c77e7 *R/spotbyspot.R
 36e86ed957520c5babae0ef36d9375c8 *R/sub.ID.R
 c8b2465ddce662cdd4ebcad75dc7aafa *R/test.correlation.R
 d6532a370433129328090dcb221495a0 *R/write.Data.R
-f2be530d2cec927ee38ea43b5c00d8de *build/vignette.rds
+92c8e8948fec3f1736e08a105aa4f8ff *build/vignette.rds
 dbdc9417236ecbd5d1356bacd45234f8 *data/HKdata.RData
 0d0e8ef378ed86286c4919b26ac7a72c *data/dataI.RData
 302c1aadfff377326a6c94a5020602d4 *data/dataII.RData
