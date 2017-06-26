@@ -1,4 +1,4 @@
-e41ac9d9d6091b6a9c434b81a26d8b50 *DESCRIPTION
+2be581f2fc97dbf68c242c624a70fde2 *DESCRIPTION
 782c6074d3ce0c8247e671ed77148821 *NAMESPACE
 9b5816cf9499a4e5477ad7cb46b0476d *R/Sips.R
 d24f8685a1fbbf0fe3e95b8dda4bd20c *R/annotate.arrays.R
@@ -56,7 +56,7 @@ ab0dca3bb8f18da1896128909b4c77e7 *R/spotbyspot.R
 36e86ed957520c5babae0ef36d9375c8 *R/sub.ID.R
 c8b2465ddce662cdd4ebcad75dc7aafa *R/test.correlation.R
 d6532a370433129328090dcb221495a0 *R/write.Data.R
-92c8e8948fec3f1736e08a105aa4f8ff *build/vignette.rds
+7a5b2e28b9ff2df93c2a0fb91431d345 *build/vignette.rds
 dbdc9417236ecbd5d1356bacd45234f8 *data/HKdata.RData
 0d0e8ef378ed86286c4919b26ac7a72c *data/dataI.RData
 302c1aadfff377326a6c94a5020602d4 *data/dataII.RData
@@ -65,8 +65,8 @@ c656100efe564a8a5b26e29683eb3d9f *data/sampledescription.old.txt.gz
 5027d3d602b271f78588d0eb9bec74ac *data/ser.dil.samples.RData
 663d5fef1d48cfbb46f34ecf877e9e0f *data/slidedescription.old.txt.gz
 a066405b6bdad4d3de23f8961a9fdc60 *inst/doc/RPPanalyzer.R
-e7728ee547c4819dcf1d2529c04cd237 *inst/doc/RPPanalyzer.pdf
-ca6ddb76acba4764d465ce6ef9f76e1b *inst/doc/RPPanalyzer.rnw
+9f5e7525ee88758f19cfb72539ec169f *inst/doc/RPPanalyzer.pdf
+d6e9a8b805396b726edb496e49d19565 *inst/doc/RPPanalyzer.rnw
 55ffc81a3d4fadb99fc92cbcb1af3bd1 *inst/extdata/FCF_Slide.gpr
 7fe6268578bed7e1352df515bc758048 *inst/extdata/S1.gpr
 bb05b0d9ffe905d34095787eff9caa2a *inst/extdata/S2.gpr
@@ -115,8 +115,8 @@ a479ceaddb340f15555061ebc952891f *man/rppaList2Heatmap.Rd
 06fa00808f852e5cae2c5062f39743ad *man/slidedescription.txt.Rd
 589c478b57f07e5c602e9b80c2986367 *man/test.correlation.Rd
 1f9d9cd3cbea8ec1cbef08e0c5fe26a8 *man/write.Data.Rd
-2785f7524c1a1956d443466d0dad45fe *vignettes/Figure1.png
-ca6ddb76acba4764d465ce6ef9f76e1b *vignettes/RPPanalyzer.rnw
+4cec1158680b8865b326c41ef8ef5c36 *vignettes/Figure1.jpg
+d6e9a8b805396b726edb496e49d19565 *vignettes/RPPanalyzer.rnw
 d41d8cd98f00b204e9800998ecf8427e *vignettes/b2-clj4700dn-p2
 2eb25d2635614ce99d870b76b2b54107 *vignettes/papers_RPPanalyzer.bib
-c755d92e932d77acf35233b4a746f126 *vignettes/workflow_RPPanalyzer.png
+01cbdaeff502553b2e4af4f37f39fa21 *vignettes/workflow_RPPanalyzer.gif

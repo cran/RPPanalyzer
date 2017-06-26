@@ -6,7 +6,7 @@
 \usepackage{amssymb}
 \usepackage{setspace}
 \usepackage{booktabs}
-\usepackage{multirow}
+%\usepackage{multirow}
 \usepackage{Sweave}
 \usepackage[authoryear,round]{natbib}
 \usepackage{times}
@@ -33,6 +33,7 @@
 \newcommand{\Rclass}[1]{{\textit{#1}}}
 \newcommand{\Rmethod}[1]{{\textit{#1}}}
 \newcommand{\Rfunarg}[1]{{\textit{#1}}}
+
 
 \SweaveOpts{keep.source=TRUE}
 
@@ -79,7 +80,7 @@ written for people that are usually working in the lab and are not familiar usin
 Figure \ref{workflow} shows an overview of the data analysis steps.
 
 \begin{figure}%[t]
-\centerline{\includegraphics[width=1\textwidth]{Figure1.png}}
+\centerline{\includegraphics[width=1\textwidth]{Figure1.jpg}}
 \caption{Recommended workflow for the analysis or reverse phase protein array data using the RPPanalyzer package}
 \label{workflow}
 \end{figure}
