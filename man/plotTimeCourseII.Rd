@@ -114,6 +114,8 @@
     Johannes Bues (j.bues@dkfz-heidelberg.de)
 }
 \examples{
+\dontrun{
+
 # pre-process the data
 dataDir <- system.file("extdata", package="RPPanalyzer")
 res <- dataPreproc(dataDir=dataDir, blocks=12, spot="aushon", exportNo=2)
@@ -133,5 +135,7 @@ distinguish=c("cell_line","treatment"))
 plotTimeCourseII(dataexpression_3, filename="timecourse_HGF_sample_data_A549.pdf", 
 legpos="top", xname="time [min]",
 yname="signal [a.u.]", linecolor=c("red","green","blue","black","orange","grey"))
+
+}
 }
 \keyword{file}

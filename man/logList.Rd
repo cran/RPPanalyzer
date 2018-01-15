@@ -20,7 +20,10 @@ Function to logarithmize (log2) the first two RPPA list elements, i.e. foregroun
  Silvia von der Heyde
 }
 \examples{
+\dontrun{
 library(RPPanalyzer)
+
+  
   
 # input data
 dataDir<-system.file("extdata",package="RPPanalyzer")
@@ -29,4 +32,6 @@ x.norm<-x$normdat
 
 # get log2 list 
 x.log<-logList(x.norm)
+
+}
 }
