@@ -24,9 +24,11 @@ Maintainer: Heiko Mannsperger <h.mannsperger@dkfz.de>
 }
 \keyword{ package }
 \examples{
+\dontrun{
 	data(dataI)
 	
 	bgcorrected <- correctBG(dataI)
 	normalized <- normalizeRPPA(bgcorrected,method="proteinDye")
 	aggregated <- sample.median(normalized)
+}
 }
