@@ -1,4 +1,4 @@
-8c10f6f0951a3051701880f94131c2f6 *DESCRIPTION
+cd522f2df1c927c929312149b647faa7 *DESCRIPTION
 782c6074d3ce0c8247e671ed77148821 *NAMESPACE
 9b5816cf9499a4e5477ad7cb46b0476d *R/Sips.R
 d24f8685a1fbbf0fe3e95b8dda4bd20c *R/annotate.arrays.R
@@ -40,7 +40,7 @@ c5e4ba32d469fd53bad69e90cdd1953e *R/plotTimeCourseII.R
 bd53848cf38858312ad1d879a0121796 *R/protein.con.R
 671da2c94f54a417178dfd47c6cb4244 *R/read.Data.R
 260426bb4a154c4939001cbff6748ae9 *R/read.gpr.R
-e3f0446137b3f914529249617f13d6d6 *R/read.sampledescription.R
+0f77cddfd68ef2683e36dbeff190c1af *R/read.sampledescription.R
 86f75bd9c66669a4309d9bab35412d4d *R/read.slidedescription.R
 4c59df056a40483e5217ce67bed64b6e *R/remove.arrays.R
 b28a010fb03e8008a7486dc8adecd926 *R/rppa2boxplot.R
@@ -63,7 +63,7 @@ a0987e6be8d968772314422029a8c48a *data/dataIII.RData
 c656100efe564a8a5b26e29683eb3d9f *data/sampledescription.old.txt.gz
 5027d3d602b271f78588d0eb9bec74ac *data/ser.dil.samples.RData
 663d5fef1d48cfbb46f34ecf877e9e0f *data/slidedescription.old.txt.gz
-4f20973f4c791afbbbf293ef3f0cb276 *inst/doc/RPPanalyzer.pdf
+941e690c4b203700e702f93da23d82b8 *inst/doc/RPPanalyzer.pdf
 55ffc81a3d4fadb99fc92cbcb1af3bd1 *inst/extdata/FCF_Slide.gpr
 7fe6268578bed7e1352df515bc758048 *inst/extdata/S1.gpr
 bb05b0d9ffe905d34095787eff9caa2a *inst/extdata/S2.gpr

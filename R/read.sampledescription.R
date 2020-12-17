@@ -7,7 +7,8 @@ function (){
     }
     
     ## read in data frame
-    sampleID<-read.delim("sampledescription.txt",header=T)
+    # sampleID<-read.delim("sampledescription.txt",header=T) # changed to new default state
+    sampleID<-read.delim("sampledescription.txt",header=TRUE,stringsAsFactors=TRUE)
     
     ## fill empty cells with NAs
     #for (i in 1:ncol(sampleID)){
