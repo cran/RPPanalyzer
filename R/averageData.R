@@ -192,7 +192,7 @@ averageData <- function(subsample, scaling = c("slide", "replicate"), distinguis
       
       fit <- try(nls(zeros ~ model(y,s), start=list(y = ystart, s=sstart), control=list(warnOnly=TRUE)), silent=FALSE)
       
-      if(class(fit)=="try-error") {
+      if(inherits(fit,"try-error")) {
         cat(" unable to fit parameters\n")
       } else {
         cat(" done\n")

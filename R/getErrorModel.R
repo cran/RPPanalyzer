@@ -99,9 +99,9 @@ getErrorModel <- function(dataexpression, verbose=FALSE) {
       
       
       fit  <- try(mle(ll, start=list(var0 = var0, varR = varR), gr=gr), silent=TRUE)
-      if(class(fit)=="try-error") {
+      if(inherits(fit,"try-error")) {
         fit <- try(mle(ll, start=list(var0 = var0, varR = varR), fixed=list(varR=0), gr=gr0), silent=TRUE) 
-      } else if(class(fit)!="try-error" & coef(fit)[1] < 0) {
+      } else if(inherits(fit,"try-error") & coef(fit)[1] < 0) {
         fit <- try(mle(ll, start=list(var0 = var0, varR = varR), fixed=list(var0=0), gr=grR), silent=TRUE)
       }
       
@@ -110,7 +110,7 @@ getErrorModel <- function(dataexpression, verbose=FALSE) {
       
       if(verbose) plot(variances[,1], variances[,2], xlab="Signal", ylab="Variance", log="y")
       y <- seq(min(variances$V1), max(variances$V1), len=1000)
-      if(class(fit)!="try-error") {
+      if(inherits(fit,"try-error")) {
         var0 <- coef(fit)[1]
         varR <- coef(fit)[2]
         v <- var0 + varR*y^2
@@ -119,7 +119,7 @@ getErrorModel <- function(dataexpression, verbose=FALSE) {
       }
       
       
-      if(class(fit)!="try-error") result <- rbind(result, cbind(subset2, data.frame(var0=coef(fit)[1], varR= coef(fit)[2]))) else result <- rbind(result, cbind(subset2, data.frame(var0=NA, varR= NA)))
+      if(inherits(fit,"try-error")) result <- rbind(result, cbind(subset2, data.frame(var0=coef(fit)[1], varR= coef(fit)[2]))) else result <- rbind(result, cbind(subset2, data.frame(var0=NA, varR= NA)))
       
       
     }

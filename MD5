@@ -1,10 +1,10 @@
-cd522f2df1c927c929312149b647faa7 *DESCRIPTION
+3334fc47366119eaefc81460f42fd983 *DESCRIPTION
 782c6074d3ce0c8247e671ed77148821 *NAMESPACE
 9b5816cf9499a4e5477ad7cb46b0476d *R/Sips.R
 d24f8685a1fbbf0fe3e95b8dda4bd20c *R/annotate.arrays.R
 887cd89af109a06ff88c9be1a58e6023 *R/annotate.samples.R
 00744fea59e332d57a7b201acedf70a4 *R/array.id.R
-2263c0982f98b9c720cb8a62c2e1d9d5 *R/averageData.R
+2222b0e947ec19648d39f4335889f87a *R/averageData.R
 77d484890cb6ab40b5a512fe36344339 *R/calcLinear.R
 e42728d120066be4f964e909cd82ad6a *R/calcLogistic.R
 2121fb3dc747523bd322702d5e6d4078 *R/calcSdc.R
@@ -20,10 +20,9 @@ f1ebd2cde1c1b358c53df3a5d575d289 *R/curveFitLinear.R
 d32fb4a06ac79794cfe432cfab38ea56 *R/dil.ser.id.R
 3430ccf3ac0169c78fb3ba0a262724f4 *R/g.link.R
 389aef31ac4df77ed591526a1f69f4c6 *R/get.Splines.R
-82d8692c8ee89289e6248497ff3dc814 *R/getErrorModel.R
+a891ed87afb28e54da694aae0b907086 *R/getErrorModel.R
 e69043b594868171558c68ad4368a397 *R/heatmapcolors.R
 3ace1cc355b8638049d6eaf34e973d74 *R/logList.R
-09e6ecef8e8f5629fb9acaca12ecbaa0 *R/median.raw.R
 6d08f2a777b5ac82de3d4039e012a933 *R/norm.BCA.R
 a4c8ee9e84f2e42d2cc4ec1549f6c912 *R/norm.static.I.R
 b90ed7cf8558332441ef60b04600550c *R/norm.static.II.R
@@ -63,7 +62,7 @@ a0987e6be8d968772314422029a8c48a *data/dataIII.RData
 c656100efe564a8a5b26e29683eb3d9f *data/sampledescription.old.txt.gz
 5027d3d602b271f78588d0eb9bec74ac *data/ser.dil.samples.RData
 663d5fef1d48cfbb46f34ecf877e9e0f *data/slidedescription.old.txt.gz
-941e690c4b203700e702f93da23d82b8 *inst/doc/RPPanalyzer.pdf
+f2fe7af83d438269fd7380b59ac6c911 *inst/doc/RPPanalyzer.pdf
 55ffc81a3d4fadb99fc92cbcb1af3bd1 *inst/extdata/FCF_Slide.gpr
 7fe6268578bed7e1352df515bc758048 *inst/extdata/S1.gpr
 bb05b0d9ffe905d34095787eff9caa2a *inst/extdata/S2.gpr
@@ -100,7 +99,7 @@ daf46f5c8b8ad65861e7aba84f91d66f *man/plotTimeCourseII.Rd
 0623ac38febb9784f0257f21c61e511e *man/rppa2boxplot.Rd
 bd706af447c9c63218dab9b2fbcf7d95 *man/rppaList2ExpressionSet.Rd
 12086c7875f1b3ca9f6c076c511770bb *man/rppaList2Heatmap.Rd
-b7e44521845c3019fa49ddaaf1244251 *man/rppanalyzer-package.Rd
+d69cd41d829ef9f51fec8dfcad5687de *man/rppanalyzer-package.Rd
 320f56026100e0fa3b22029cba80b467 *man/sample.median.Rd
 0705573872740e8bb19d66c96f58f682 *man/sampledescription.old.Rd
 570b79f023968cfaca5c541838e66166 *man/sampledescription.txt.Rd
