@@ -2,8 +2,8 @@ Package: RPPanalyzer
 Type: Package
 Title: Reads, Annotates, and Normalizes Reverse Phase Protein Array
         Data
-Version: 1.4.8
-Date: 2023-08-25
+Version: 1.4.9
+Date: 2024-01-25
 Author: Heiko Mannsperger with contributions of Stephan Gade
 Maintainer: Torsten Schoeps <torsten.schoeps@bioinf.med.uni-goettingen.de>
 Depends: R (>= 2.14)
@@ -16,7 +16,7 @@ Description: Reads in sample description and slide description files and
 	After normalization data can be visualized as boxplot, heatmap or dotplot.
 License: LGPL
 LazyLoad: yes
-Packaged: 2023-08-28 11:47:16 UTC; root
+Packaged: 2024-01-25 09:21:58 UTC; root
 Repository: CRAN
-Date/Publication: 2023-08-28 12:30:02 UTC
+Date/Publication: 2024-01-25 11:00:02 UTC
 NeedsCompilation: no
